@@ -6,7 +6,7 @@ import org.springframework.web.servlet.theme.AbstractThemeResolver;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@Component
+@Component("themeResolver")
 public class TtrThemeResolver extends AbstractThemeResolver {
 
     public String resolveThemeName(HttpServletRequest request) {
@@ -16,7 +16,7 @@ public class TtrThemeResolver extends AbstractThemeResolver {
         } else if ("red".equals(theme)) {
             return "red";
         } else {
-            return "";
+            return "default";
         }
     }
 
