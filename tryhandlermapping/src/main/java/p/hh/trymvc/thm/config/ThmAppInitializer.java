@@ -1,6 +1,5 @@
 package p.hh.trymvc.thm.config;
 
-import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class ThmAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {

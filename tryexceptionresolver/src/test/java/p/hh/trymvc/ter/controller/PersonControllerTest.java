@@ -13,8 +13,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.hamcrest.Matchers.containsString;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -25,21 +23,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 class PersonControllerTest {
 
-    @Configuration
-    @ComponentScan(basePackages = "p.hh.trymvc.ter")
-    public static class ContextConfig {
-    }
-
     @Autowired
     private WebApplicationContext wac;
-
     private MockMvc mvc;
 
     @BeforeEach
     public void setup() {
         mvc = MockMvcBuilders.webAppContextSetup(wac).build();
     }
-
 
     @Test
     void greetingWithClientError() throws Exception {
@@ -55,5 +46,10 @@ class PersonControllerTest {
                 .andDo(print())
                 .andExpect(content().string("server error"))
                 .andExpect(status().is5xxServerError());
+    }
+
+    @Configuration
+    @ComponentScan(basePackages = "p.hh.trymvc.ter")
+    public static class ContextConfig {
     }
 }

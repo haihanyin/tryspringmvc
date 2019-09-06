@@ -19,7 +19,7 @@ public class TerHandlerExceptionResolver implements HandlerExceptionResolver {
                 response.getWriter().write(type + " error");
                 if ("client".equals(type)) {
                     response.setStatus(400);
-                } else if("server".equals(type)) {
+                } else if ("server".equals(type)) {
                     response.setStatus(500);
                 }
             } catch (IOException e) {

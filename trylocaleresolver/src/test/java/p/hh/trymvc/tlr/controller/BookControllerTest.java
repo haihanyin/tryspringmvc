@@ -1,7 +1,5 @@
 package p.hh.trymvc.tlr.controller;
 
-import org.hamcrest.Matchers;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,13 +12,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.ContentResultMatchers;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -30,20 +25,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 class BookControllerTest {
 
-    @Configuration
-    @ComponentScan(basePackages = "p.hh.trymvc.tlr")
-    public static class ContextConfig { }
-
     @Autowired
     private WebApplicationContext wac;
-
     private MockMvc mvc;
 
     @BeforeEach
     public void setup() {
         mvc = MockMvcBuilders.webAppContextSetup(wac).build();
     }
-
 
     @Test
     void simpleGreeting() throws Exception {
@@ -53,10 +42,15 @@ class BookControllerTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"fr,bonjorno","nl,dag"})
+    @CsvSource({"fr,bonjorno", "nl,dag"})
     void greetings(String lang, String greetingWord) throws Exception {
         mvc.perform(get("/greeting").param("locale", lang))
                 .andDo(print())
                 .andExpect(content().string(containsString(greetingWord)));
+    }
+
+    @Configuration
+    @ComponentScan(basePackages = "p.hh.trymvc.tlr")
+    public static class ContextConfig {
     }
 }

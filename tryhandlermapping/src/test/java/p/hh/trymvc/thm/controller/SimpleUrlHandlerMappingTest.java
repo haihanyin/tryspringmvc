@@ -26,6 +26,22 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = SimpleUrlHandlerMappingTest.Config.class)
 class SimpleUrlHandlerMappingTest {
 
+    @Autowired
+    private WebApplicationContext wac;
+    private MockMvc mvc;
+
+    @BeforeEach
+    public void setup() {
+        mvc = MockMvcBuilders.webAppContextSetup(wac).build();
+    }
+
+    @Test
+    void greeting() throws Exception {
+        mvc.perform(get("/mygreeting.xyz"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
     @Configuration
     static class Config {
         @Bean
@@ -39,22 +55,5 @@ class SimpleUrlHandlerMappingTest {
         public CarController carController() {
             return new CarController();
         }
-    }
-
-    @Autowired
-    private WebApplicationContext wac;
-
-    private MockMvc mvc;
-
-    @BeforeEach
-    public void setup() {
-        mvc = MockMvcBuilders.webAppContextSetup(wac).build();
-    }
-
-    @Test
-    void greeting() throws Exception {
-        mvc.perform(get("/mygreeting.xyz"))
-                .andDo(print())
-                .andExpect(status().isOk());
     }
 }

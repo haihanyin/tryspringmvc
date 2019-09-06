@@ -1,11 +1,7 @@
 package p.hh.trymvc.tlr.service;
 
-import org.springframework.context.i18n.LocaleContext;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.i18n.AbstractLocaleContextResolver;
 import org.springframework.web.servlet.i18n.AbstractLocaleResolver;
-import org.springframework.web.servlet.i18n.CookieLocaleResolver;
-import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

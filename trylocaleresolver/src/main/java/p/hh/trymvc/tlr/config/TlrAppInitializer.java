@@ -9,7 +9,7 @@ public class TlrAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     }
 
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[] {TlrAppServletConfig.class};
+        return new Class[]{TlrAppServletConfig.class};
     }
 
     protected String[] getServletMappings() {

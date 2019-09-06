@@ -1,7 +1,7 @@
 <html>
 <head>
     <#import "/spring.ftl" as spring/>
-    <link href='<@spring.theme code="stylesheet" />' rel="stylesheet" />
+    <link href='<@spring.theme code="stylesheet" />' rel="stylesheet"/>
 </head>
 
 <body>
